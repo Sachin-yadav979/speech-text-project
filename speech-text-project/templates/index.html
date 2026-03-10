@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/static/manifest.json">
+<title>Speech Text Converter</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<h2>Speech ↔ Text Converter</h2>
+
+<input id="text" placeholder="Type or Speak">
+
+<br>
+
+<button onclick="startSpeech()">🎤 Speak</button>
+
+<button onclick="speak()">🔊 Play Voice</button>
+
+<script>
+
+function startSpeech(){
+
+var recognition = new webkitSpeechRecognition();
+
+recognition.lang = "en-US";
+
+recognition.onresult = function(event){
+
+document.getElementById("text").value =
+event.results[0][0].transcript;
+
+}
+
+recognition.start();
+
+}
+
+function speak(){
+
+var text = document.getElementById("text").value;
+
+var speech = new SpeechSynthesisUtterance(text);
+
+speech.lang = "en-US";
+
+window.speechSynthesis.speak(speech);
+
+}
+
+</script>
+
+</body>
+<script>
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('/static/sw.js');
+}
+</script>
+</html>

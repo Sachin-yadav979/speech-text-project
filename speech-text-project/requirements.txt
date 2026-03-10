@@ -1,0 +1,4 @@
+flask
+speechrecognition
+gtts
+pydub
