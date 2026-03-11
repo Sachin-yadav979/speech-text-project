@@ -1,4 +1,4 @@
 flask
-speechrecognition
-gtts
-pydub
+gunicorn
+SpeechRecognition
+pyaudio
